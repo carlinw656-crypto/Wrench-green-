@@ -1,0 +1,3 @@
+chmod +x build-wrench-green.sh deploy-final.sh
+rm -rf wrench-green/.vercel wrench-green/.next
+./deploy-final.sh
