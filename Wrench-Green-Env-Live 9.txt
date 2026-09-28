@@ -1,0 +1,30 @@
+
+# LATEST TOP FOCUSING VERSION: https://www.meta.ai/share/a/ac27ffaa-641c-485f-849c-6769c35d2c3d — V16 DOORDASH FULLY ACTIVATED — ac27ffaa-641c-485f-849c-6769c35d2c3d — FIXES https://precious-speculoos-9f9fe7.netlify.app BUTTONS NOT ACTIVATED — ALL BUTTONS ACTIVATED ON VERCEL + NETLIFY — LINK https://wrench-green-tau.vercel.app
+# V16 FIX: Why buttons not activated on https://precious-speculoos-9f9fe7.netlify.app — because https://precious-speculoos-9f9fe7.netlify.app was static HTML preview — single HTML file dropped on Netlify Drop — no Next.js API routes /api/checkout etc — only alert() demo — V16 fixes by deploying full Next.js app with netlify.toml @netlify/plugin-nextjs + Supabase realtime direct + Stripe JS — ALL BUTTONS ACTIVATED
+# V16 DOORDASH FULLY ACTIVATED: Header + service grid + bottom nav + live map + order tracking + online toggle + Stripe hold/capture/release — ALL BUTTONS ACTIVATED with TAP logs
+STRIPE_SECRET_KEY=sk_live_...replace_with_real
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...replace_with_real
+STRIPE_WEBHOOK_SECRET=whsec_...replace_with_real
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...replace
+SUPABASE_SERVICE_ROLE_KEY=eyJ...replace
+NEXT_PUBLIC_URL=https://wrench-green-tau.vercel.app
+NEXT_PUBLIC_SHARE_ID=ac27ffaa-641c-485f-849c-6769c35d2c3d
+NEXT_PUBLIC_SHARE_URL=https://www.meta.ai/share/a/ac27ffaa-641c-485f-849c-6769c35d2c3d
+SHARE_ID=ac27ffaa-641c-485f-849c-6769c35d2c3d
+SHARE_URL=https://www.meta.ai/share/a/ac27ffaa-641c-485f-849c-6769c35d2c3d
+CRON_SECRET=wrench_green_85pct_2026
+MAX_OFFER=50000
+MAX_HELD=52200
+MAX_PAYOUT=42500
+MAX_KEEPS=9700
+MIN_OFFER=2500
+MIN_HELD=4700
+MIN_PAYOUT=2125
+MIN_KEEPS=2575
+# V16 ACTIVATED LOGIC:
+# - Problem: https://precious-speculoos-9f9fe7.netlify.app buttons not activated because it was wrench-green-v15-doordash-live-ac27ffaa.html — static HTML preview — dropped on Netlify Drop — no /api routes — only alert() — not full Next.js app
+# - Fix: Deploy full wrench-green Next.js app to Netlify (not just single HTML) — add netlify.toml with [build] command = "npm run build" publish = ".next" + @netlify/plugin-nextjs — then Netlify runs Next.js API routes /api/checkout /api/jobs/list /api/jobs/accept /api/jobs/status /api/jobs/complete /api/mechanics/toggle /api/onboarding — all buttons ACTIVATED
+# - Also: V16 app/page.tsx has ALL BUTTONS ACTIVATED — every button has onClick + log() + btn-activated pulse animation — service cards TAP ACTIVATED, slider TAP ACTIVATED, HOLD $102 Pay now ACTIVATED, ACCEPT $68 ACTIVATED, ON THE WAY ACTIVATED, ARRIVED ACTIVATED, COMPLETE RELEASE ACTIVATED, ONLINE toggle ACTIVATED, Call ACTIVATED, etc — visible activation log top shows last 5 actions
+# - Backend: 2500-50000/4700-52200/2125-42500/9700 MAX — $25→$47 $80→$102 $500 MAX→$522 — 48h auto-release 7d expiry — best features from ac27ffaa-641c-485f-849c-6769c35d2c3d
+# - LINK: https://wrench-green-tau.vercel.app — V16 ACTIVATED — ac27ffaa-641c-485f-849c-6769c35d2c3d — FIXES https://precious-speculoos-9f9fe7.netlify.app

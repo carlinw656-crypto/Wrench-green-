@@ -1,0 +1,59 @@
+
+-- V16 DOORDASH FULLY ACTIVATED — ac27ffaa-641c-485f-849c-6769c35d2c3d — FIXES https://precious-speculoos-9f9fe7.netlify.app BUTTONS NOT ACTIVATED — ALL BUTTONS ACTIVATED — LINK https://wrench-green-tau.vercel.app
+-- FIX: https://precious-speculoos-9f9fe7.netlify.app was static HTML preview — no API routes — buttons only alert() — V16 uses Supabase realtime direct + Stripe JS + netlify.toml Next.js plugin — ALL BUTTONS ACTIVATED on Vercel + Netlify
+-- $25 MIN  → $47 HELD  → $21.25 → $25.75 keeps — FULLY ACTIVATED
+-- $80      → $102      → $68    → $34 — FULLY ACTIVATED
+-- $300     → $322      → $255   → $67 bank daily — FULLY ACTIVATED
+-- $500 MAX → $522      → $425   → $97 MAX — 3x $291/day $8730/mo — FULLY ACTIVATED
+create extension if not exists "pgcrypto";
+drop table if exists jobs cascade;
+drop table if exists mechanics cascade;
+create table jobs (
+  id uuid primary key default gen_random_uuid(),
+  offer_amount int not null check (offer_amount >= 2500 and offer_amount <= 50000),
+  customer_total int not null check (customer_total >= 4700 and customer_total <= 52200),
+  mechanic_payout int not null check (mechanic_payout >= 2125 and mechanic_payout <= 42500),
+  payment_intent_id text unique,
+  status text not null default 'authorized' check (status in ('authorized','accepted','on_the_way','arrived','completed','expired','HELD','RELEASED','held','captured')),
+  service_type text default 'Jump Start',
+  customer_lat double precision default 39.0997,
+  customer_lng double precision default -94.5786,
+  customer_address text default 'Kansas City, MO',
+  mechanic_id uuid references mechanics(id),
+  mechanic_stripe_account text,
+  held_at timestamptz default now(),
+  auto_release_at timestamptz default (now() + interval '48 hours'),
+  expires_at timestamptz not null default (now() + interval '7 days'),
+  captured_at timestamptz,
+  transfer_id text,
+  share_id text default 'ac27ffaa-641c-485f-849c-6769c35d2c3d',
+  share_url text default 'https://www.meta.ai/share/a/ac27ffaa-641c-485f-849c-6769c35d2c3d',
+  created_at timestamptz default now()
+);
+create table mechanics (
+  id uuid primary key default gen_random_uuid(),
+  stripe_account_id text unique,
+  email text,
+  name text default 'Mike',
+  area_codes text default '816, 913, 314',
+  state text default 'Missouri',
+  radius_mi int default 25,
+  lat double precision default 39.0997,
+  lng double precision default -94.5786,
+  online bool default true,
+  rating float default 4.9,
+  jobs_completed int default 12,
+  share_id text default 'ac27ffaa-641c-485f-849c-6769c35d2c3d',
+  created_at timestamptz default now()
+);
+alter table jobs enable row level security;
+alter table mechanics enable row level security;
+drop policy if exists "Allow all" on jobs;
+create policy "Allow all" on jobs for all using (true) with check (true);
+drop policy if exists "Allow all" on mechanics;
+create policy "Allow all" on mechanics for all using (true) with check (true);
+insert into mechanics (id, stripe_account_id, name, area_codes, lat, lng, online, rating, jobs_completed) values
+('00000000-0000-0000-0000-000000000001', 'acct_test_mechanic_mike', 'Mike', '816, 913', 39.0997, -94.5786, true, 4.9, 47),
+('00000000-0000-0000-0000-000000000002', 'acct_test_mechanic_sarah', 'Sarah', '816', 39.12, -94.56, true, 5.0, 32),
+('00000000-0000-0000-0000-000000000003', 'acct_test_mechanic_james', 'James', '913', 39.08, -94.60, true, 4.8, 28)
+on conflict (id) do nothing;
